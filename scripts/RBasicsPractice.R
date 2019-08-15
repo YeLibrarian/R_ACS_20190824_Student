@@ -81,12 +81,38 @@ conc
 conc <- calib$FeSCN_Conc_mol
 conc
 
-# Your turn: read the Absorption column and assign it to a varaible called abs
+#basic statistic functions: mean, std, median 
+conc_mean <- mean(conc)
+conc_median <- median(conc)
+conc_std <- sd(conc)
+
+# Your turn: read the Absorbance column and assign it to a varaible called abs
 abs <- calib$Abs
 abs
 
 abs <- calib[ , 2]
 abs
 
-# Your turn: read the first 
+# Your turn: read the first six rows only and assign it to a variable called calib_clean
+# Because the last absorption value is negative and clearly an outlier 
+calib_clean <- calib[1:6, ]
+calib_clean
+
+calib_clean <- calib[-7, ]
+calib_clean
+# Note that the raw data file Calib20190725.csv still has all the data points. 
+# Your deletion of the suspicious data point is reproducible through the script. 
+# Documenting the reason for deletion will help youself and others to understand in the future.
+
+#change names of the columns
+colnames(calib_clean)
+colnames(calib_clean) <- c("Concentration_M", "Absorbance")
+calib_clean
+
+
+#Now let's plot the calibration curve
+#First, let's plot the data points
+plot(calib_clean)
+
+
 
