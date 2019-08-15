@@ -56,9 +56,37 @@ rm(x)
 rm(list = ls())
 
 # Get tabulized data into the Environment as data frame
-# Example: plot a calibrarion curve from the data 
+# Example: plot a calibrarion curve for the chemical reaction Fe^3+^ + SCN^-^  <-> FeSCN^2+^
 
+# To import the data in .csv format, use read.csv function
+# when importing, we assign the dataframe to a variable named calib
 
+calib <- read.csv("./data/Calib20190725.csv")
 
+# hint: the data file is under the data subfolder while the R script is under the script subfolder. 
+# use ./ to go up one level of folder first. 
 
+# Take a look at the imported data
+calib
+
+# overview the data properties
+str(calib)
+summary(calib)
+
+# subset dataframe
+# read the concenrration column only
+conc <- calib[ , 1]
+conc
+
+conc <- calib$FeSCN_Conc_mol
+conc
+
+# Your turn: read the Absorption column and assign it to a varaible called abs
+abs <- calib$Abs
+abs
+
+abs <- calib[ , 2]
+abs
+
+# Your turn: read the first 
 
