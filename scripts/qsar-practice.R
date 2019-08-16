@@ -57,7 +57,7 @@ median(benzoate$pka)
 min(benzoate$pka)
 max(benzoate$pka)
 
-# a couple of ways to visulaize the spread graphically
+# a couple of ways to visualize the spread graphically
 
 # a boxplot - you can add a title and label axes if you like
 
