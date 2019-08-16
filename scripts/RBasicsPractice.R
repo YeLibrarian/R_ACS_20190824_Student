@@ -113,6 +113,40 @@ calib_clean
 #Now let's plot the calibration curve
 #First, let's plot the data points
 plot(calib_clean)
+#You may need to click on Plots/Zoom on the right botton window to see the plot
+
+#to change the color and shape of the points
+plot(calib_clean, col = "red", pch = 16)
+
+#give the plotting result to a variable so that we can add to it
+calib_fig <- plot(calib_clean, col = "red", pch = 16)
+
+#calculate the best fit 
+calibfit <- lm(Absorbance ~ Concentration_M, data = calib_clean)
+calibfit
+str(calibfit)
+calibfit$model
+calibfit$model$Absorbance
+calibfit$fitted.values
+
+#Add the fitted value to the plot
+
+with(calib_clean, plot(Concentration_M, Absorbance, col = "red", pch = 16))
+abline(calibfit)
+
+plot(calib_clean, col = "red", pch = 16)
+abline(calibfit)
+
+calib_fig
+
+#Get Help 
+#using ?
+?plot
+?pch
+??pch
+#search on stackoverflow.com . With tag [r]
+
+  
 
 
 
