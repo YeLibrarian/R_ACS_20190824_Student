@@ -74,14 +74,14 @@ str(calib)
 summary(calib)
 
 # subset dataframe
-# read the concenrration column only
+# read the concentration column only
 conc <- calib[ , 1]
 conc
 
 conc <- calib$FeSCN_Conc_mol
 conc
 
-#basic statistic functions: mean, std, median 
+# basic statistic functions: mean, std, median 
 conc_mean <- mean(conc)
 conc_median <- median(conc)
 conc_std <- sd(conc)
@@ -100,19 +100,53 @@ calib_clean
 
 calib_clean <- calib[-7, ]
 calib_clean
+
 # Note that the raw data file Calib20190725.csv still has all the data points. 
 # Your deletion of the suspicious data point is reproducible through the script. 
 # Documenting the reason for deletion will help youself and others to understand in the future.
 
-#change names of the columns
+# change names of the columns
+
 colnames(calib_clean)
 colnames(calib_clean) <- c("Concentration_M", "Absorbance")
 calib_clean
 
+# Now let's plot the calibration curve
+# First, let's plot the data points
 
-#Now let's plot the calibration curve
-#First, let's plot the data points
 plot(calib_clean)
 
+# You may need to click on Plots/Zoom on the right botton window to see the plot
+# to change the color and shape of the points
 
+plot(calib_clean, col = "red", pch = 16)
 
+# give the plotting result to a variable so that we can add to it
+
+calib_fig <- plot(calib_clean, col = "red", pch = 16)
+
+# calculate the best fit 
+
+calibfit <- lm(Absorbance ~ Concentration_M, data = calib_clean)
+calibfit
+str(calibfit)
+calibfit$model
+calibfit$model$Absorbance
+calibfit$fitted.values
+
+# Add the fitted value to the plot
+
+with(calib_clean, plot(Concentration_M, Absorbance, col = "red", pch = 16))
+abline(calibfit)
+
+plot(calib_clean, col = "red", pch = 16)
+abline(calibfit)
+
+calib_fig
+
+# Get Help using the ?
+?plot
+?pch
+??pch
+
+# search on stackoverflow.com . With tag [r]
