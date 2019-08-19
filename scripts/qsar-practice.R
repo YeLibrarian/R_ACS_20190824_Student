@@ -1,14 +1,36 @@
 # This .R file is for students to practice basic R commands.
-# We can use the pound symbol# to add any comments. Here, we use it to give you instructions on what to do. 
+# We can use the pound symbol# to add any comments. 
+# Here, we use it to give you instructions on what to do. 
+
 # Please follow the instructor to type and run commands under the related comment lines
 # Once you typed the commands, use "ctrl + Enter" on PC or "Command + Enter" on Mac to run the command
 
 
-# Demonstration:  Building QSAR models with R
+# Load Data:  Building QSAR models with R
 
 # Load the data file benzoate.txt from the /data/ folder
+# File menu (top left)
+#    Import Dataset
+#    from Text (base)
+#    navigate to the data folder
+#    select benzoate.txt
+
+# The Import Panel has several settings and a preview of the data
+# Heading Yes
+# Row Names - select "Use First Column" 
+#               (otherwise you may get strange results later)
+# Separator Tab
+
+# view the datafile in the terminal window
+
+benzoate
+
+# you can also see the dataset using the Environment tab (top right panel)
 
 
+# Demonstration:  Building QSAR models with R
+
+# A simple Example
 # Build a linear model comparing benzoate$pka with benzoate$sigma.m
 # the ~ is used the way you would normally use =
 # 
@@ -32,6 +54,10 @@ summary(model.m)
 # update the plot with a title and label the axes
 
 plot(benzoate$pka, fitted(model.m), main="This is the title", xlab="Observed pKa", ylab="Predicted pKa")
+
+# it's a new plot, so you have to add the line again
+
+abline(a=0, b=1)
 
 
 # Part 1: Exploratory look at pKa values
@@ -57,13 +83,10 @@ median(benzoate$pka)
 min(benzoate$pka)
 max(benzoate$pka)
 
-<<<<<<< HEAD
-# a couple of ways to visualize the spread graphically
-=======
-# a couple of ways to visulaize the spread graphically
->>>>>>> 5b2ff753b1bd90004891be7b87ad6220bf374920
 
-# a boxplot - you can add a title and label axes if you like
+# a couple of ways to visualize the data spread graphically
+
+# a boxplot - you can add a title and label the axes if you like
 
 boxplot(benzoate$pka)
 
@@ -91,7 +114,7 @@ model.all <- lm(pka ~ . , data=benzoate)
 
 # plot the results
 
-plot(benzoate$pka, fitted(model.xxx), main="This is the title", xlab="Observed pKa", ylab="Predicted pKa")
+plot(benzoate$pka, fitted(model.all), main="This is the title", xlab="Observed pKa", ylab="Predicted pKa")
 
 # add a line
 
@@ -99,7 +122,7 @@ abline(a=0, b=1)
 
 # Get quantitative info on each model using:
 
-summary(model.xxx)
+summary(model.all)
 
 
 # Best 5 Descriptors from model.all 
@@ -108,8 +131,12 @@ summary(model.xxx)
 model.5 <- lm(pka ~  sigma.p + sigma.m + ortho + tpsa + logp,  data=benzoate)
 
 # generate a plot and data summary for model.5 following the pattern used for model.all
+# don't forget to change "model.all" to "model.5"
 
-# Best 2 Descriptors from model.5 (fill in the actual descriptors yourself)
+# Best 2 Descriptors from model.5 
+#  fill in the actual descriptors yourself
+# summary(modle.5) will list Pr values for each descriptor
+# note: the Intercept will have is not a descriptor
 
 model.2 <- lm(pka ~    desc  +  desc, data=benzoate)
 
