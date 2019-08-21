@@ -144,6 +144,22 @@ abline(calibfit)
 
 calib_fig
 
+#save a plot to a file
+#Open jpeg file
+
+jpeg("./figures/calib_fig.jpg", width = 350, height = "350")
+
+#Create the plot
+
+plot(calib_clean, col = "red", pch = 16)
+abline(calibfit)
+
+#Close the file
+
+dev.off()
+
+
+
 # Get Help using the ?
 ?plot
 ?pch
