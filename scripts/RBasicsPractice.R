@@ -153,7 +153,8 @@ jpeg("./figures/calib_fig.jpg", width = 350, height = 350)
 
 #Create the plot
 
-plot(calib_clean, col = "red", pch = 16, main = "Calibration of Absorbance", x = "Concentration (M)", y = "Absorbance")
+plot(calib_clean, col = "red", pch = 16, main = "Calibration of Absorbance", 
+     xlab = "Concentration (M)", ylab = "Absorbance")
 abline(calibfit)
 
 #Close the file
