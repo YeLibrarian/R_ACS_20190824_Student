@@ -111,6 +111,11 @@ colnames(calib_clean)
 colnames(calib_clean) <- c("Concentration_M", "Absorbance")
 calib_clean
 
+#save the cleaned up data as a csv file to the data_output folder
+
+write.csv(calib_clean, file = "./data_output/calib_clean.csv")
+
+
 # Now let's plot the calibration curve
 # First, let's plot the data points
 
@@ -136,18 +141,15 @@ calibfit$fitted.values
 
 # Add the fitted value to the plot
 
-with(calib_clean, plot(Concentration_M, Absorbance, col = "red", pch = 16))
-abline(calibfit)
 
 plot(calib_clean, col = "red", pch = 16)
 abline(calibfit)
 
-calib_fig
 
 #save a plot to a file
 #Open jpeg file
 
-jpeg("./figures/calib_fig.jpg", width = 350, height = "350")
+jpeg("./figures/calib_fig.jpg", width = 350, height = 350)
 
 #Create the plot
 
@@ -166,3 +168,6 @@ dev.off()
 ??pch
 
 # search on stackoverflow.com . With tag [r]
+
+
+

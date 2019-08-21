@@ -21,6 +21,8 @@
 #               (otherwise you may get strange results later)
 # Separator Tab
 
+benzoate <- read.delim("./data/benzoate.txt", row.names=1) 
+
 # view the datafile in the terminal window
 
 benzoate
@@ -82,7 +84,6 @@ median(benzoate$pka)
 
 min(benzoate$pka)
 max(benzoate$pka)
-
 
 # a couple of ways to visualize the data spread graphically
 
