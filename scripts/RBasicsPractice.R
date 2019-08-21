@@ -153,7 +153,7 @@ jpeg("./figures/calib_fig.jpg", width = 350, height = 350)
 
 #Create the plot
 
-plot(calib_clean, col = "red", pch = 16)
+plot(calib_clean, col = "red", pch = 16, main = "Calibration of Absorbance", x = "Concentration (M)", y = "Absorbance")
 abline(calibfit)
 
 #Close the file
@@ -168,6 +168,14 @@ dev.off()
 ??pch
 
 # search on stackoverflow.com . With tag [r]
+
+
+#Optional content
+
+#Prediction using the model 
+
+
+# access chem data online 
 
 
 
