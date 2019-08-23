@@ -69,7 +69,7 @@ calib <- read.csv("./data/Calib20190725.csv")
 # Take a look at the imported data
 calib
 
-# overview the data properties
+# Your turn: overview the data object properties - use str() or summary()
 str(calib)
 summary(calib)
 
@@ -126,11 +126,8 @@ plot(calib_clean)
 
 plot(calib_clean, col = "red", pch = 16)
 
-# give the plotting result to a variable so that we can add to it
 
-calib_fig <- plot(calib_clean, col = "red", pch = 16)
-
-# calculate the best fit 
+# calculate the best fit using lm(y ~ x, data = )
 
 calibfit <- lm(Absorbance ~ Concentration_M, data = calib_clean)
 calibfit
@@ -163,18 +160,23 @@ dev.off()
 
 
 
-# Get Help using the ?
+# Getting help
+#know function name and search for documents
 ?plot
-?pch
-??pch
-
-# search on stackoverflow.com . With tag [r]
+#remind yourself the name of arguments of a function
+args(lm)
+#keyword search in Help when not knowing the function
+??color
+#Google or search on stackoverflow.com . With tag [r]
+#inlcude computing environment info when asking questions
+sessionInfo()
 
 
 #Optional content
 
-#Prediction using the model 
-
+#Predict concentration using the model 
+calibfit2 <- lm(Concentration_M ~ Absorbance, data = calib_clean)
+conc_new <- predict(calibfit2, list(Absorbance=0.6))
 
 # access chem data online 
 
