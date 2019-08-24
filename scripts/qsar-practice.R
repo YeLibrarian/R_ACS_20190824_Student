@@ -21,11 +21,11 @@
 #               (otherwise you may get strange results later)
 # Separator Tab
 
-benzoate <- read.delim("./data/benzoate.txt", row.names=1) 
+
 
 # view the datafile in the terminal window
 
-benzoate
+
 
 # you can also see the dataset using the Environment tab (top right panel)
 
@@ -38,28 +38,28 @@ benzoate
 # 
 # this model attempts to predict the value of the pKa based on the variable sigma.m
 
-model.m <- lm(pka ~ sigma.m, data=benzoate)
+
 
 # plot the results
 # and add a line for x=y, which represents the ideal prediction by the model
 
-plot(benzoate$pka, fitted(model.m))
 
-abline(a=0, b=1)
+
+
 
 # see a numerical summary of the model's statistics
 # 
 
-summary(model.m)
+
 
 
 # update the plot with a title and label the axes
 
-plot(benzoate$pka, fitted(model.m), main="This is the title", xlab="Observed pKa", ylab="Predicted pKa")
+
 
 # it's a new plot, so you have to add the line again
 
-abline(a=0, b=1)
+
 
 
 # Part 1: Exploratory look at pKa values
@@ -74,26 +74,26 @@ abline(a=0, b=1)
 
 # how many data points are there
 
-length(benzoate$pka)
+
 
 # what is the median value
 
-median(benzoate$pka)
+
 
 # what are the minimum and maximum values
 
-min(benzoate$pka)
-max(benzoate$pka)
+
+
 
 # a couple of ways to visualize the data spread graphically
 
 # a boxplot - you can add a title and label the axes if you like
 
-boxplot(benzoate$pka)
+
 
 # a histogram
 
-hist(benzoate$pka)
+
 
 
 
@@ -111,25 +111,25 @@ hist(benzoate$pka)
 
 # model with All 8 Descriptors 
 
-model.all <- lm(pka ~ . , data=benzoate)
+
 
 # plot the results
 
-plot(benzoate$pka, fitted(model.all), main="This is the title", xlab="Observed pKa", ylab="Predicted pKa")
+
 
 # add a line
 
-abline(a=0, b=1)
+
 
 # Get quantitative info on each model using:
 
-summary(model.all)
+
 
 
 # Best 5 Descriptors from model.all 
 # the ones with the lowest Pr values in the summary of model.all
 
-model.5 <- lm(pka ~  sigma.p + sigma.m + ortho + tpsa + logp,  data=benzoate)
+
 
 # generate a plot and data summary for model.5 following the pattern used for model.all
 # don't forget to change "model.all" to "model.5"
@@ -139,13 +139,13 @@ model.5 <- lm(pka ~  sigma.p + sigma.m + ortho + tpsa + logp,  data=benzoate)
 # summary(modle.5) will list Pr values for each descriptor
 # note: the Intercept will have is not a descriptor
 
-model.2 <- lm(pka ~    desc  +  desc, data=benzoate)
+
 
 # plot and summary
 
 # Best 1 Descriptor from model.2 (fill in the actual descriptors yourself)
 
-model.1 <- lm(pka ~    desc, data=benzoate)
+
 
 # plot and summary
 
