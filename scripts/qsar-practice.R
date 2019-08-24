@@ -74,11 +74,11 @@
 
 # how many data points are there
 
-
+length(benzoate$pka)
 
 # what is the median value
 
-
+median(benzoate$pka)
 
 # what are the minimum and maximum values
 
@@ -89,11 +89,11 @@
 
 # a boxplot - you can add a title and label the axes if you like
 
-
+boxplot(benzoate$pka)
 
 # a histogram
 
-
+hist(benzoate$pka, main="this is the title")
 
 
 
@@ -111,29 +111,34 @@
 
 # model with All 8 Descriptors 
 
-
+model.all <- lm(pka ~ ., data=benzoate)
 
 # plot the results
 
-
+plot(benzoate$pka, fitted(model.all))
 
 # add a line
 
-
+abline(a=0, b=1)
 
 # Get quantitative info on each model using:
 
-
+summary(model.all)
 
 
 # Best 5 Descriptors from model.all 
 # the ones with the lowest Pr values in the summary of model.all
 
+model.5 <- lm(pka ~ sigma.p + sigma.m  +  
+                ortho  +  tpsa  + logp, data=benzoate)
 
 
 # generate a plot and data summary for model.5 following the pattern used for model.all
-# don't forget to change "model.all" to "model.5"
 
+plot(benzoate$pka, fitted(model.5))
+
+# don't forget to change "model.all" to "model.5"
+summary(model.5)
 # Best 2 Descriptors from model.5 
 #  fill in the actual descriptors yourself
 # summary(modle.5) will list Pr values for each descriptor

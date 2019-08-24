@@ -1,7 +1,7 @@
 ---
 title: "QSAR Lab Report"
-author: "Name Goes Here"
-date: "Date Goes Here"
+author: "Donna Wrublewski"
+date: "August 24, 2019"
 output:
   word_document: default
   html_notebook: default
@@ -10,32 +10,36 @@ bibliography: references.bib
 
 ```{r echo=FALSE}
 library("knitr")
-benzoate <- read.delim("./data/benzoate.txt", row.names=1)
+benzoate <- read.delim("/cloud/project/data/benzoate.txt", row.names=1)
 ```
 
-Introduction
+# Introduction
 
 One focus of Chemical Informatics is to try to predict the behavior of a compound based 
 on its structure. Especially, behavior in a biological system can be very complex and 
 difficult to predict in a simple way. Some examples are:
 
-drug activity
-drug side effects
-environmental toxicity
+1. drug activity
+2. drug side effects
+3. environmental toxicity
 
 These are complex types of behavior and are difficult to predict. One way to approach 
-this problem is known as a QSAR – Quantitative Structure-Activity Relationship. (Insert reference here.) The most common approach to QSAR is rather like constructing a Calibration 
+this problem is known as a QSAR – Quantitative Structure-Activity Relationship. @PETER2019661 The most common approach to QSAR is rather like constructing a Calibration 
 Curve, except that multiple variables are used in building the model. You start with a 
 series of “descriptors” - numbers that describe the structure of the
 molecule which are easy to compute or measure, for example: MW, solubility, number of 
 hydrogen- bond-donors, dipole moment, and many others. Using these it is possible to 
 build a multiple regression model: an equation to predict the activity of interest:
 
+`
 activity = intercept + (const1) * (descriptor1) + (const2) * (descriptor2) + (const3)*(descriptor3) ...
+`
 
 In this case, the “activity” represents the Dependent variable (also called the Response variable) and the “descriptors” represent multiple Independent variables (also called Explanatory variables).  This equation is an expansion of the standard formula for a straight line:
 
+`
 y = mx + b
+`
 
 in this case “b” is the intercept and “m” is the slope.  
 
@@ -49,16 +53,16 @@ all meta or all para.  What if you have all three substitution patterns present 
 dataset?  
 
 Insert this files as an image with the alternate text
-"Substituted benzoic acids"
+![Substituted benzoic acids](/cloud/project/images/bromo_benzoic_acids.png)
 
 We will use this method to model the pKa values for a series of substituted benzoic 
-acids. Substituents on the benzene can affect the pKa of benzoic acid – electron 
-withdrawing substituents lower the pKa (more acidic), and electron donating substituents 
-increase the pKa (less acidic). The Sigma value of a substituent is a measure of how 
+acids. Substituents on the benzene can affect the *pKa* of benzoic acid – electron 
+withdrawing substituents lower the _pKa_ (more acidic), and electron donating substituents 
+increase the pKa (less acidic). The **Sigma value** of a substituent is a measure of how 
 strongly electron-donating or electron-withdrawing it is. But the value of Sigma, and 
 the pKa both depend on its location on the benzene ring: ortho, meta or para. As a 
 result, two different versions of sigma are included in the data file:
-sigma.m for when the substituent is meta, and sigma.p for when the substituent 
+__sigma.m__ for when the substituent is meta, and sigma.p for when the substituent 
 is para. For ortho substituents, the sigma.p value can be used.
 
 As a further refinement, we can add Indicator Variables to the model.  In the dataset 
@@ -68,15 +72,24 @@ There are three other descriptors as well: TPSA describes the total polar surfac
 of the molecule, logP describes its solubility in water versus in octanol, and MR is the 
 molar refractivity which has to do with the polarizability of the molecule.
 
-Results
+# Results
 
-(Heding 2) Exploratory Analysis of pKa values
+## Exploratory Analysis of pKa values
 
-(Heading 3) pKa Values
+### pKa Values
 
 Insert the number of values and the median value.
 
+The median value of the pKa data set is `r median(benzoate$pka)`.
+
+
+
 Insert a table of values
+
+```{r echo = FALSE}
+kable(benzoate, caption="Raw pKa data")
+```
+
 
 (Heading 3) Plots
 
